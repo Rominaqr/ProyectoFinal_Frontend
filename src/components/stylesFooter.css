@@ -1,0 +1,32 @@
+footer {
+    background: url(../imagen/imagen_header.jpeg) no-repeat center center;
+    background-size: cover;
+    background-color: #e0dafd;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 10px 10px 0px;
+}
+
+footer ul {
+    margin-top: 10px;
+}
+
+footer ul.social-buttons li a {
+    display: block;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    font-size: 20px;
+    color: #222;
+    background-color: #fff;
+    transition-duration: 0.4s;
+}
+
+footer ul.social-buttons li a:hover {
+    background-color: #6fb3f3;
+    color: #fff;
+}
+
+footer ul.social-buttons li a i {
+    margin-top: 7px;
+}
