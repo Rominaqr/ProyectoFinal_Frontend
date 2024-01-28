@@ -16,14 +16,11 @@ En la primera entrega se desarrolla ->
 Pagina:
 - Home 
 - Añadir Publicaciones
-- Eliminar Publicación
 - Editar Pubicaciones
 - Más Información y cargar comentarios.
 
-29-01-2024 - Segunda entrega:
+Pendiente para la segunda entrega:
 - Registración 
 - Login
 - Logout
 - Search con filtro.
-- Eliminar comentario si es del usuario logeado.
-- Eliminar o editar publicacion solo del usuario logueado. 
