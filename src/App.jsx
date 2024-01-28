@@ -1,25 +1,26 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Menu from './components/Menu'
 import Publicacion from './views/Publicacion'
 import Home from './views/Home'
 import MostrarPublicacion from './views/MostrarPublicacion'
 import EditarPublicacion from './views/EditarPublicacion'
-import Footer from './components/Footer'
+import Registrarse from './views/Registrarse'
+import GlobalState from './context/GlobalContext' /*Provider context Api*/
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <Menu />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Publicar" element={<Publicacion />} />
-        <Route path="/MostrarPublicacion/:id" element={<MostrarPublicacion />} />
-        <Route path="/EditarPublicacion/:id" element={<EditarPublicacion />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <GlobalState>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/Publicar" element={<Publicacion />} />
+          <Route path="/MostrarPublicacion/:id" element={<MostrarPublicacion />} />
+          <Route path="/EditarPublicacion/:id" element={<EditarPublicacion />} />
+          <Route path="/Registrarse" element={<Registrarse />} />
+        </Routes>
+      </BrowserRouter>
+    </GlobalState>
   )
 }
 

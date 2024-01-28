@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { getByidPublicacion, putByidPublicacion } from "../components/apiMethod";
+import connectionData from "../apiConnection/apiMethod";
 import { useParams, useNavigate } from "react-router-dom";
 import MensajeAlerta from "../components/MensajeAlerta";
+import Menu from "../components/Menu";
+import Footer from "../components/Footer";
 
-const EditarPublicacion = (props) => {
+const EditarPublicacion = () => {
 
     const [getState, setGetState] = useState({ titulo: "", imagen: "", descripcion: "" })
     const [datosGuardados, setDatosGuardados] = useState(false);
@@ -15,7 +17,14 @@ const EditarPublicacion = (props) => {
         try {
             event.preventDefault();
             const datos = { titulo: getState.titulo, imagen: getState.imagen, descripcion: getState.descripcion }
-            await putByidPublicacion(id, datos);
+            const apiDatos = {
+                endpoint: "http://localhost:5000/publicaciones",
+                method: "PUT",
+                body: datos,
+                direction: id,
+                token: localStorage.getItem('token')
+            }
+            await connectionData(apiDatos);
             setDatosGuardados(true)
         } catch (error) {
 
@@ -30,14 +39,22 @@ const EditarPublicacion = (props) => {
     }
 
     const handleCancelar = () => {
-        navegar("/");
+        navegar("/home");
     }
 
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const dato = await getByidPublicacion(id);
+
+                const apiDatos = {
+                    endpoint: "http://localhost:5000/publicaciones",
+                    method: "GET",
+                    body: "",
+                    direction: id,
+                    token: localStorage.getItem('token')
+                }
+                const dato = await connectionData(apiDatos);
                 setGetState(dato);
 
             } catch (error) {
@@ -51,6 +68,7 @@ const EditarPublicacion = (props) => {
 
     return (
         <>
+            <Menu />
             <div className="container">
                 <form onSubmit={handleSubmit} >
                     <div className="row mb-5">
@@ -87,6 +105,7 @@ const EditarPublicacion = (props) => {
                     </div>
                 </form>
             </div>
+            <Footer />
         </>
     )
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { agregarComentario } from "./apiMethod"
+import connectionData from "../apiConnection/apiMethod";
+import PropTypes from 'prop-types';
 
 const AgregarComentario = (props) => {
 
@@ -14,18 +15,32 @@ const AgregarComentario = (props) => {
 
     const handlePublicar = async (event) => {
         event.preventDefault();
+        try {
+            const newComentario = {
+                contenido: comentario.contenido,
+                publicacionId: props.id
+            };
 
-        const newComentario = {
-            contenido: comentario.contenido,
-            usuario: "RQUISPE",
-            publicacionId: props.id
-        };
+            const apiDatos = {
+                endpoint: "http://localhost:5000/comentarios",
+                method: "POST",
+                body: newComentario,
+                direction: "",
+                token: localStorage.getItem('token')
+            }
 
-        await agregarComentario(newComentario);/*api*/
+            const result = await connectionData(apiDatos);/*api*/
+            props.nuevoComentario(); /*actualizo estado componente padre para refrezcar el componente*/
 
-        props.nuevoComentario(); /*actualizo estado componente padre para refrezcar el componente*/
+            setComentario(" ") /*inicializo nuevamente*/
+        } catch (err) {
+            console.error('Ocurrió un error en la conexión, debe loguearse nuevamente.', err);
 
-        setComentario(" ") /*inicializo nuevamente*/
+            if (err.response) {
+                // Si la excepción tiene una propiedad 'response', significa que proviene de una respuesta HTTP
+                console.error('Respuesta del servidor:', err.response.data);
+            }
+        }
 
     }
 
@@ -39,6 +54,11 @@ const AgregarComentario = (props) => {
 
     )
 
+}
+
+AgregarComentario.prototypes = {
+    id: PropTypes.string.isRequired,
+    nuevoComentario: PropTypes.func.isRequired
 }
 
 export default AgregarComentario;

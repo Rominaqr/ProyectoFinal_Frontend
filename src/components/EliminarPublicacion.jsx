@@ -1,11 +1,21 @@
 import React from "react";
-import { deleteByidPublicacion } from "./apiMethod"
+import connectionData from "../apiConnection/apiMethod";
+import PropTypes from 'prop-types';
 
 const EliminarPublicacion = (props) => {
 
     const handleEliminar = async (event) => {
         event.preventDefault();
-        await deleteByidPublicacion(props.id)
+        const apiDatos = {
+            endpoint: "http://localhost:5000/publicaciones",
+            method: "DELETE",
+            body: "",
+            direction: props.id,
+            token: localStorage.getItem('token')
+        }
+
+        await connectionData(apiDatos)
+        
         props.stateElimina({
             estado: false,
             id: ""
@@ -38,6 +48,11 @@ const EliminarPublicacion = (props) => {
         </>
     )
 
+}
+
+EliminarPublicacion.propTypes ={
+    id: PropTypes.string.isRequired,
+    stateElimina: PropTypes.func.isRequired
 }
 
 export default EliminarPublicacion;
