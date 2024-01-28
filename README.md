@@ -12,6 +12,8 @@ Frontend Proyecto final Curso NodeJs
 
 Acceso local host ->  http://localhost:5173/
 
+Url Acceso Home: http://localhost:5173/home
+
 En la primera entrega se desarrolla ->
 Pagina:
 - Home 
@@ -19,8 +21,10 @@ Pagina:
 - Editar Pubicaciones
 - Más Información y cargar comentarios.
 
-Pendiente para la segunda entrega:
+29-01-2024 - segunda entrega:
 - Registración 
 - Login
 - Logout
 - Search con filtro.
+- Eliminar comentario solo usuario logueado.
+- Eliminar y modificar Publicación solo usuario logueado.
