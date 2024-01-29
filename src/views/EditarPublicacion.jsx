@@ -14,7 +14,7 @@ const EditarPublicacion = () => {
     const navegar = useNavigate();/*regresar al home*/
 
 
-    const handleSubmit = async (event) => {
+    const handlerSubmit = async (event) => {
         try {
             event.preventDefault();
             const datos = { titulo: getState.titulo, imagen: getState.imagen, descripcion: getState.descripcion }
@@ -34,14 +34,14 @@ const EditarPublicacion = () => {
         }
     }
 
-    const handleOnchange = (event) => {
+    const handlerOnchange = (event) => {
         const name = event.target.name
         const value = event.target.value
         setGetState({ ...getState, [name]: value })
 
     }
 
-    const handleCancelar = () => {
+    const handlerCancelar = () => {
         navegar("/home");
     }
 
@@ -73,21 +73,21 @@ const EditarPublicacion = () => {
         <>
             <Menu />
             <div className="container">
-                <form onSubmit={handleSubmit} >
+                <form onSubmit={handlerSubmit} >
                     <div className="row mb-5">
                         <h2>Editar publicación</h2>
                     </div>
                     <div className="row mb-3">
                         <label className="col-sm-2 col-form-label col-form-label-lg">Titulo</label>
                         <div className="col-sm-10">
-                            <input type="text" className="form-control form-control-lg" id="titulo" name="titulo" placeholder="Titulo" value={getState.titulo || ""} onChange={handleOnchange}></input>
+                            <input type="text" className="form-control form-control-lg" id="titulo" name="titulo" placeholder="Titulo" value={getState.titulo || ""} onChange={handlerOnchange}></input>
                         </div>
                     </div>
 
                     <div className="row mb-3">
                         <label className="col-sm-2 col-form-label col-form-label-lg">Imagen</label>
                         <div className="col-sm-10">
-                            <input type="text" className="form-control form-control-lg" id="imagen" name="imagen" placeholder="URL Imagen" value={getState.imagen || ""} onChange={handleOnchange}></input>
+                            <input type="text" className="form-control form-control-lg" id="imagen" name="imagen" placeholder="URL Imagen" value={getState.imagen || ""} onChange={handlerOnchange}></input>
                         </div>
                         <div className="p-3 text-justify">
                             <img src={getState.imagen || ""} className="img-thumbnail" alt={getState.titulo || ""}></img>
@@ -97,7 +97,7 @@ const EditarPublicacion = () => {
                     <div className="row mb-3">
                         <label className="col-sm-2 col-form-label col-form-label-lg">Descripción</label>
                         <div className="col-sm-10">
-                            <textarea type="text" className="form-control form-control-lg" id="descripcion" name="descripcion" placeholder="Descripción" value={getState.descripcion || ""} onChange={handleOnchange}></textarea>
+                            <textarea type="text" className="form-control form-control-lg" id="descripcion" name="descripcion" placeholder="Descripción" value={getState.descripcion || ""} onChange={handlerOnchange}></textarea>
                         </div>
                     </div>
 
@@ -105,7 +105,7 @@ const EditarPublicacion = () => {
                         {datosGuardados && <MensajeAlerta tipoMensaje="alert alert-success" mensaje="Los datos se han guardado correctamente." setAlertState={setDatosGuardados} />}
                         {datosError && <MensajeAlerta tipoMensaje="alert alert-danger" mensaje={datosError} setAlertState={setDatosError} />}
                         <button type="submit" className="btn btn-primary mb-3" >Guardar</button>
-                        <button type="button" className="btn btn-secondary mb-3" onClick={handleCancelar} >Cancelar</button>
+                        <button type="button" className="btn btn-secondary mb-3" onClick={handlerCancelar} >Cancelar</button>
                     </div>
                 </form>
             </div>

@@ -13,14 +13,14 @@ const Publicacion = () => {
   const mensaje = validarDatos(publicarForm);
 
 
-  const handleOnchange = (event) => {
+  const handlerOnchange = (event) => {
     const name = event.target.name
     const value = event.target.value
     setPublicarForm({ ...publicarForm, [name]: value })
 
   }
 
-  const handleSubmit = async (event) => {
+  const handlerSubmit = async (event) => {
 
     try {
 
@@ -57,14 +57,14 @@ const Publicacion = () => {
     <>
       <Menu />
       <div className="container">
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handlerSubmit} >
           <div className="row mb-5">
             <h2>Nueva publicación</h2>
           </div>
           <div className="row mb-3">
             <label className="col-sm-2 col-form-label col-form-label-lg">Titulo</label>
             <div className="col-sm-10">
-              <input type="text" className="form-control form-control-lg" id="titulo" name="titulo" placeholder="Titulo" value={publicarForm.titulo} onChange={handleOnchange}></input>
+              <input type="text" className="form-control form-control-lg" id="titulo" name="titulo" placeholder="Titulo" value={publicarForm.titulo} onChange={handlerOnchange}></input>
               <p className="text-sm-start" style={{ color: "red" }}>{mensaje.tituloMsg}</p>
             </div>
           </div>
@@ -72,7 +72,7 @@ const Publicacion = () => {
           <div className="row mb-3">
             <label className="col-sm-2 col-form-label col-form-label-lg">Imagen</label>
             <div className="col-sm-10">
-              <input type="text" className="form-control form-control-lg" id="imagen" name="imagen" placeholder="URL Imagen" value={publicarForm.imagen} onChange={handleOnchange}></input>
+              <input type="text" className="form-control form-control-lg" id="imagen" name="imagen" placeholder="URL Imagen" value={publicarForm.imagen} onChange={handlerOnchange}></input>
               <p className="text-sm-start" style={{ color: "red" }}>{mensaje.imagenMsg}</p>
             </div>
           </div>
@@ -80,7 +80,7 @@ const Publicacion = () => {
           <div className="row mb-3">
             <label className="col-sm-2 col-form-label col-form-label-lg">Descripción</label>
             <div className="col-sm-10">
-              <textarea type="text" className="form-control form-control-lg" id="descripcion" name="descripcion" placeholder="Descripción" value={publicarForm.descripcion} onChange={handleOnchange}></textarea>
+              <textarea type="text" className="form-control form-control-lg" id="descripcion" name="descripcion" placeholder="Descripción" value={publicarForm.descripcion} onChange={handlerOnchange}></textarea>
               <p className="text-sm-start" style={{ color: "red" }}>{mensaje.descripcionMsg}</p>
             </div>
           </div>

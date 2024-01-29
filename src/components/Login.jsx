@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import connectionData from "../apiConnection/apiMethod";
 import MensajeAlerta from "./MensajeAlerta";
 import PropTypes from 'prop-types';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AppContext from "../context/appContext";
 
 const Login = (props) => {
@@ -12,14 +12,14 @@ const Login = (props) => {
     const [mensajeError, setMensajeError] = useState();
     const navegar = useNavigate();
 
-    const handleOnchange = (event) => {
+    const handlerOnchange = (event) => {
         const name = event.target.name
         const value = event.target.value
         setLoginForm({ ...loginForm, [name]: value })
 
     }
 
-    const handleLogin = async (event) => {
+    const handlerLogin = async (event) => {
         event.preventDefault();
         try {
             const apiDatos = {
@@ -36,9 +36,9 @@ const Login = (props) => {
 
                     if (result.token) {
                         localStorage.setItem('usuario', result.usuario)
-                        localStorage.setItem('nombre', result.nombre +', '+result.apellido)
+                        localStorage.setItem('nombre', result.nombre + ', ' + result.apellido)
                         localStorage.setItem('token', result.token)
-                        context.setNombreLogin(result.nombre +', '+result.apellido)
+                        context.setNombreLogin(result.nombre + ', ' + result.apellido)
                         context.setUsuarioLogin(result.usuario)
                         props.estadoMostrarLogin(false)
                         navegar("/home");
@@ -65,7 +65,7 @@ const Login = (props) => {
 
     }
 
-    const handleClose = () => {
+    const handlerClose = () => {
         props.estadoMostrarLogin(false)
     }
 
@@ -76,21 +76,21 @@ const Login = (props) => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id="loginModalLabel">Login</h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={handleClose}></button>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={handlerClose}></button>
                         </div>
                         <div className="modal-body">
                             <form>
                                 <div className="mb-3">
                                     <label className="col-form-label">E-mail:</label>
-                                    <input type="text" className="form-control" id="email" name="email" onChange={handleOnchange}></input>
+                                    <input type="text" className="form-control" id="email" name="email" onChange={handlerOnchange}></input>
                                 </div>
                                 <div className="mb-3">
                                     <label className="col-form-label">Password:</label>
-                                    <input type="password" className="form-control" id="password" name="password" onChange={handleOnchange}></input>
+                                    <input type="password" className="form-control" id="password" name="password" onChange={handlerOnchange}></input>
                                 </div>
                                 <div className="mb-3">
                                     <label className="col-form-label">Repetir Password:</label>
-                                    <input type="password" className="form-control" id="RepetirPassword" name="repetirpassword" onChange={handleOnchange}></input>
+                                    <input type="password" className="form-control" id="RepetirPassword" name="repetirpassword" onChange={handlerOnchange}></input>
                                 </div>
                             </form>
                         </div>
@@ -98,8 +98,8 @@ const Login = (props) => {
                         {datosError && <MensajeAlerta tipoMensaje="alert alert-danger" mensaje={mensajeError} setAlertState={setDatosError} />}
 
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-primary" onClick={handleLogin}>Login</button>
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={handleClose}>Close</button>
+                            <button type="button" className="btn btn-primary" onClick={handlerLogin}>Login</button>
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={handlerClose}>Close</button>
                         </div>
                     </div>
                 </div>

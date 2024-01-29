@@ -2,11 +2,10 @@ import React, { useState, useContext } from "react";
 import Search from "./Search";
 import { Link, useNavigate } from "react-router-dom";
 import Login from './Login';
-import PropTypes from 'prop-types';
 import AppContext from "../context/appContext";
 
 
-const Menu = (props) => {
+const Menu = () => {
     const context = useContext(AppContext);
     const [estadoMostrarLogin, setEstadoMostrarLogin] = useState(false)
 
@@ -68,7 +67,7 @@ const Menu = (props) => {
                                         </li>}
                                     </ul>
                                     <h5 className="usuarioLogin"> {context.nombreLogin}</h5>
-                                    {estadoMostrarLogin && <Login estadoMostrarLogin={setEstadoMostrarLogin} login={props.setusuarioLogin} />}
+                                    {estadoMostrarLogin && <Login estadoMostrarLogin={setEstadoMostrarLogin} />}
                                 </div>
                             </div>
                         </nav>
@@ -80,8 +79,5 @@ const Menu = (props) => {
 
 };
 
-Menu.propTypes = {
-    setusuarioLogin: PropTypes.func
-}
 
 export default Menu;

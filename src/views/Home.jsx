@@ -29,6 +29,7 @@ const Home = () => {
         setPublicaciones(datos);
       } catch (error) {
         console.error("Error fetching data:", error);
+        alert(error.message);
       }
     };
 

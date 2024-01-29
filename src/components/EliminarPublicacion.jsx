@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const EliminarPublicacion = (props) => {
 
-    const handleEliminar = async (event) => {
+    const handlerEliminar = async (event) => {
         event.preventDefault();
         const apiDatos = {
             endpoint: "http://localhost:5000/publicaciones",
@@ -28,7 +28,7 @@ const EliminarPublicacion = (props) => {
 
     }
 
-    const handleCancelar = () => {
+    const handlerCancelar = () => {
         props.stateElimina({
             estado: false,
             id: ""
@@ -44,8 +44,8 @@ const EliminarPublicacion = (props) => {
                     <div className="toast-body">
                         ¿Esta seguro que desea eliminar la publicación {props.id}?
                         <div className="mt-2 pt-2 border-top">
-                            <button type="button" className="btn btn-primary btn-sm" onClick={handleEliminar}>Eliminar</button>
-                            <button type="button" className="btn btn-secondary btn-sm" data-bs-dismiss="toast" onClick={handleCancelar}>Cancelar</button>
+                            <button type="button" className="btn btn-primary btn-sm" onClick={handlerEliminar}>Eliminar</button>
+                            <button type="button" className="btn btn-secondary btn-sm" data-bs-dismiss="toast" onClick={handlerCancelar}>Cancelar</button>
                         </div>
                     </div>
                 </div>

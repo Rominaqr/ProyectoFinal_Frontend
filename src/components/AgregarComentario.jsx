@@ -8,14 +8,14 @@ const AgregarComentario = (props) => {
     const [comentario, setComentario] = useState([]);
     const [datosError, setDatosError] = useState(false);
 
-    const handleOnchange = (event) => {
+    const handlerOnchange = (event) => {
         const name = event.target.name
         const value = event.target.value
         setComentario({ ...comentario, [name]: value })
 
     }
 
-    const handlePublicar = async (event) => {
+    const handlerPublicar = async (event) => {
         event.preventDefault();
         try {
             const newComentario = {
@@ -51,8 +51,8 @@ const AgregarComentario = (props) => {
     return (
         <>
             <div className="input-group mb-3">
-                <input type="text" className="form-control" placeholder="Añadir comentario" aria-label="Recipient's username" aria-describedby="button-addon2" name="contenido" value={comentario.contenido || ''} onChange={handleOnchange} ></input>
-                <button className="btn btn-outline-primary" type="button" id="button-addon2" onClick={handlePublicar}>Publicar</button>
+                <input type="text" className="form-control" placeholder="Añadir comentario" aria-label="Recipient's username" aria-describedby="button-addon2" name="contenido" value={comentario.contenido || ''} onChange={handlerOnchange} ></input>
+                <button className="btn btn-outline-primary" type="button" id="button-addon2" onClick={handlerPublicar}>Publicar</button>
             </div>
             {datosError && <MensajeAlerta tipoMensaje="alert alert-danger" mensaje={datosError} setAlertState={setDatosError} />}
 

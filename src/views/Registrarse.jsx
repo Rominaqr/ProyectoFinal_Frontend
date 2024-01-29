@@ -10,14 +10,14 @@ const Registrarse = () => {
     const [datosGuardados, setDatosGuardados] = useState(false);
     const [datosError, setDatosError] = useState(false);
   
-    const handleOnchange = (event) => {
+    const handlerOnchange = (event) => {
         const name = event.target.name
         const value = event.target.value
         setUsuarioForm({ ...usuarioForm, [name]: value })
     }
 
 
-    const handleSubmit = async (event) => {
+    const handlerSubmit = async (event) => {
         try {
             event.preventDefault();
 
@@ -52,39 +52,39 @@ const Registrarse = () => {
         <>
             <Menu/>
             <div className="container">
-                <form onSubmit={handleSubmit} >
+                <form onSubmit={handlerSubmit} >
                     <div className="row mb-5">
                         <h2>Registración</h2>
                     </div>
                     <div className="row mb-3">
                         <label className="col-sm-2 col-form-label col-form-label-lg">Nombre Usuario</label>
                         <div className="col-sm-10">
-                            <input type="text" className="form-control form-control-lg" id="usuario" name="usuario" placeholder="Nombre de Usuario" value={usuarioForm.usuario} onChange={handleOnchange}></input>
+                            <input type="text" className="form-control form-control-lg" id="usuario" name="usuario" placeholder="Nombre de Usuario" value={usuarioForm.usuario} onChange={handlerOnchange}></input>
                         </div>
                     </div>
                     <div className="row mb-3">
                         <label className="col-sm-2 col-form-label col-form-label-lg">E-mail</label>
                         <div className="col-sm-10">
-                            <input type="text" className="form-control form-control-lg" id="email" name="email" placeholder="E-Mail" value={usuarioForm.email} onChange={handleOnchange}></input>
+                            <input type="text" className="form-control form-control-lg" id="email" name="email" placeholder="E-Mail" value={usuarioForm.email} onChange={handlerOnchange}></input>
                         </div>
                     </div>
                     <div className="row mb-3">
                         <label className="col-sm-2 col-form-label col-form-label-lg">Nomre</label>
                         <div className="col-sm-10">
-                            <input type="text" className="form-control form-control-lg" id="nombre" name="nombre" placeholder="Nombre" value={usuarioForm.nombre} onChange={handleOnchange}></input>
+                            <input type="text" className="form-control form-control-lg" id="nombre" name="nombre" placeholder="Nombre" value={usuarioForm.nombre} onChange={handlerOnchange}></input>
                         </div>
                     </div>
 
                     <div className="row mb-3">
                         <label className="col-sm-2 col-form-label col-form-label-lg">Apellido</label>
                         <div className="col-sm-10">
-                            <input type="text" className="form-control form-control-lg" id="apellido" name="apellido" placeholder="Apellido" value={usuarioForm.apellido} onChange={handleOnchange}></input>
+                            <input type="text" className="form-control form-control-lg" id="apellido" name="apellido" placeholder="Apellido" value={usuarioForm.apellido} onChange={handlerOnchange}></input>
                         </div>
                     </div>
                     <div className="row mb-3">
                         <label className="col-sm-2 col-form-label col-form-label-lg">Password</label>
                         <div className="col-sm-10">
-                            <input type="password" className="form-control form-control-lg" id="password" name="password" placeholder="Password" value={usuarioForm.password} onChange={handleOnchange}></input>
+                            <input type="password" className="form-control form-control-lg" id="password" name="password" placeholder="Password" value={usuarioForm.password} onChange={handlerOnchange}></input>
                         </div>
                     </div>
 
