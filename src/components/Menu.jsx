@@ -11,12 +11,12 @@ const Menu = () => {
 
     const navegar = useNavigate();
 
-    const handleLogin = () => {
+    const handlerLogin = () => {
         setEstadoMostrarLogin(true)
     }
 
 
-    const handleLogout = () => {
+    const handlerLogout = () => {
         localStorage.removeItem('usuario')
         localStorage.removeItem('nombre')
         localStorage.removeItem('token')
@@ -58,8 +58,8 @@ const Menu = () => {
                                                 Usuario
                                             </a>
                                             <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                                {!context.usuarioLogin && <li><a className="dropdown-item" href='#' onClick={handleLogin}>Login</a></li>}
-                                                {context.usuarioLogin && <li><a className="dropdown-item" href="#" onClick={handleLogout}>Logout</a></li>}
+                                                {!context.usuarioLogin && <li><a className="dropdown-item" href='#' onClick={handlerLogin}>Login</a></li>}
+                                                {context.usuarioLogin && <li><a className="dropdown-item" href="#" onClick={handlerLogout}>Logout</a></li>}
                                             </ul>
                                         </li>
                                         {!context.usuarioLogin && <li className="nav-item">
