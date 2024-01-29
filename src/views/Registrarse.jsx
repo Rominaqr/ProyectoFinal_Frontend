@@ -38,22 +38,13 @@ const Registrarse = () => {
             } else {
                 setDatosError(true);
                 setDatosGuardados(false);
-                const errorMessage = await result.text();
+              /*  throw new Error(`HTTP error!}`);*/
 
-                console.log("ROMINA"+errorMessage)
             }
 
         } catch (err) {
-            setDatosError(true);
+            setDatosError(err.message);
             setDatosGuardados(false);
-            if (err.response) {
-                // Verificar si el error tiene una propiedad 'response'
-                console.error('Status:', err.response.status);
-                console.error('Mensaje de error:', err.response.data.error);
-            } else {
-                console.error('Error desconocido:', err);
-            }
-
         }
     }
 
@@ -99,7 +90,7 @@ const Registrarse = () => {
 
                     <div className="mb-3">
                         {datosGuardados && <MensajeAlerta tipoMensaje="alert alert-success" mensaje="Los datos se han guardado correctamente." setAlertState={setDatosGuardados} />}
-                        {datosError && <MensajeAlerta tipoMensaje="alert alert-danger" mensaje="Error: los datos no han sido guardados." setAlertState={setDatosError} />}
+                        {datosError && <MensajeAlerta tipoMensaje="alert alert-danger" mensaje={datosError} setAlertState={setDatosError} />}
                         <button type="submit" className="btn btn-primary mb-3" >Guardar</button>
                     </div>
 

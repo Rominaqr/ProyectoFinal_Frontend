@@ -9,6 +9,7 @@ const EditarPublicacion = () => {
 
     const [getState, setGetState] = useState({ titulo: "", imagen: "", descripcion: "" })
     const [datosGuardados, setDatosGuardados] = useState(false);
+    const [datosError, setDatosError] = useState(false);
     const { id } = useParams();
     const navegar = useNavigate();/*regresar al home*/
 
@@ -26,7 +27,9 @@ const EditarPublicacion = () => {
             }
             await connectionData(apiDatos);
             setDatosGuardados(true)
+            setDatosError(false)
         } catch (error) {
+            setDatosError(error.message)
 
         }
     }
@@ -100,6 +103,7 @@ const EditarPublicacion = () => {
 
                     <div className="mb-3">
                         {datosGuardados && <MensajeAlerta tipoMensaje="alert alert-success" mensaje="Los datos se han guardado correctamente." setAlertState={setDatosGuardados} />}
+                        {datosError && <MensajeAlerta tipoMensaje="alert alert-danger" mensaje={datosError} setAlertState={setDatosError} />}
                         <button type="submit" className="btn btn-primary mb-3" >Guardar</button>
                         <button type="button" className="btn btn-secondary mb-3" onClick={handleCancelar} >Cancelar</button>
                     </div>

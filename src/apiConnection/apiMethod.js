@@ -29,20 +29,28 @@ const connectionData = async (datos) => {
         }
 
         const response = await fetch(datos.endpoint + '/' + datos.direction, requestOptions);
+
         if (!response.ok) {
-            const errorMessage = await response.text();
-            const errorObject = JSON.parse(errorMessage);
-            throw new Error(`HTTP error! Status: ${response.status}, Error: ${JSON.stringify(errorObject)}`);
-            
+            let errorMessage;
+
+            try {
+                errorMessage = await response.text();
+                const errorObject = JSON.parse(errorMessage);
+                throw new Error(`HTTP error! Status: ${response.status}, Error: ${JSON.stringify(errorObject)}`);
+            } catch (jsonError) {
+                errorMessage = `HTTP error! Status: ${response.status}, Error: ${errorMessage}`;
+                throw new Error(errorMessage);
+            }
         }
+
         const data = await response.json();
 
         return data;
 
     }
     catch (err) {
-        console.error("Ocurrio un error en la conección - " + err);
-       /* throw new Error(`HTTP error! Status: ${err}`);*/
+       
+        throw err; /*lanzo el error*/
     }
 
 }

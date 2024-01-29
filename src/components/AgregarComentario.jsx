@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import connectionData from "../apiConnection/apiMethod";
 import PropTypes from 'prop-types';
+import MensajeAlerta from "./MensajeAlerta";
 
 const AgregarComentario = (props) => {
 
     const [comentario, setComentario] = useState([]);
+    const [datosError, setDatosError] = useState(false);
 
     const handleOnchange = (event) => {
         const name = event.target.name
@@ -30,16 +32,18 @@ const AgregarComentario = (props) => {
             }
 
             const result = await connectionData(apiDatos);/*api*/
-            props.nuevoComentario(); /*actualizo estado componente padre para refrezcar el componente*/
-
-            setComentario(" ") /*inicializo nuevamente*/
-        } catch (err) {
-            console.error('Ocurrió un error en la conexión, debe loguearse nuevamente.', err);
-
-            if (err.response) {
-                // Si la excepción tiene una propiedad 'response', significa que proviene de una respuesta HTTP
-                console.error('Respuesta del servidor:', err.response.data);
+            if (result) {
+                props.nuevoComentario(); /*actualizo estado componente padre para refrezcar el componente*/
+                setComentario(" ") /*inicializo nuevamente*/
+                setDatosError(False)
             }
+
+        } catch (err) {
+            console.log(err.message)
+            setDatosError(err.message);
+            /*  console.error('Ocurrió un error en la conexión, debe loguearse nuevamente.', err);*/
+
+
         }
 
     }
@@ -50,6 +54,8 @@ const AgregarComentario = (props) => {
                 <input type="text" className="form-control" placeholder="Añadir comentario" aria-label="Recipient's username" aria-describedby="button-addon2" name="contenido" value={comentario.contenido || ''} onChange={handleOnchange} ></input>
                 <button className="btn btn-outline-primary" type="button" id="button-addon2" onClick={handlePublicar}>Publicar</button>
             </div>
+            {datosError && <MensajeAlerta tipoMensaje="alert alert-danger" mensaje={datosError} setAlertState={setDatosError} />}
+
         </>
 
     )

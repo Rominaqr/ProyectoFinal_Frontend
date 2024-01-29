@@ -10,7 +10,6 @@ const Publicacion = () => {
   const [publicarForm, setPublicarForm] = useState({ titulo: '', imagen: '', descripcion: '' });
   const [datosGuardados, setDatosGuardados] = useState(false);
   const [datosError, setDatosError] = useState(false);
-  const [usuarioLogin, setusuarioLogin] = useState(localStorage.getItem('usuario'));
   const mensaje = validarDatos(publicarForm);
 
 
@@ -42,14 +41,13 @@ const Publicacion = () => {
         setDatosGuardados(true);
         setDatosError(false);
       } else {
-        setDatosError("Token Invalido");
+        /*setDatosError("Token Invalido");*/
         setDatosGuardados(false);
-
+        throw new Error(`error inesperado!`);
       }
 
     } catch (error) {
-      console.log(error)
-      setDatosError(error);
+      setDatosError(error.message);
       setDatosGuardados(false);
 
     }

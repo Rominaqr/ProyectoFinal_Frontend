@@ -60,7 +60,7 @@ const Login = (props) => {
         }
         catch (error) {
             setDatosError(true);
-            setMensajeError(error)
+            setMensajeError(error.message)
         }
 
     }

@@ -13,13 +13,18 @@ const EliminarPublicacion = (props) => {
             direction: props.id,
             token: localStorage.getItem('token')
         }
-
-        await connectionData(apiDatos)
-        
-        props.stateElimina({
-            estado: false,
-            id: ""
-        })
+        try {
+            const result = await connectionData(apiDatos)
+            if (result) {
+                props.stateElimina({
+                    estado: false,
+                    id: ""
+                })
+            }
+        } catch (err) {
+            handleCancelar();
+            alert(err.message); 
+        }
 
     }
 
@@ -50,7 +55,7 @@ const EliminarPublicacion = (props) => {
 
 }
 
-EliminarPublicacion.propTypes ={
+EliminarPublicacion.propTypes = {
     id: PropTypes.string.isRequired,
     stateElimina: PropTypes.func.isRequired
 }
