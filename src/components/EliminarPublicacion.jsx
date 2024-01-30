@@ -22,8 +22,11 @@ const EliminarPublicacion = (props) => {
                 })
             }
         } catch (err) {
-            handleCancelar();
-            alert(err.message); 
+           alert(err.message); 
+           props.stateElimina({
+            estado: false,
+            id: ""
+            }) 
         }
 
     }
